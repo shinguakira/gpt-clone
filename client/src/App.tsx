@@ -1,4 +1,5 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
+import './App.css';
 import { RiSendPlaneFill } from "react-icons/ri";
 import { BsPersonCircle } from "react-icons/bs";
 import ChatGPTsvg from "./img/chatgpt-icon-svg.svg";
@@ -63,52 +64,44 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen px-4 bg-gray-800 text-white">
-      <h1 className="text-center font-medium my-3">ChatGPT Clone</h1>
-      <div className="flex-1 max-h-[80vh] overflow-y-auto w-full max-w-2xl mx-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
-        {conversation.length === 0 && (
-          <div className="flex items-start my-5">
-            <img src={ChatGPTsvg} alt="" className="w-6 h-6 mr-2" />
+    <div className="app-container">
+      <h1>ChatGPT Clone</h1>
+      <div className="conversation-container">
+        {conversation.length === 0 ? (
+          <div className="conversation-reponse query-container">
+            <img src={ChatGPTsvg} alt="" />
             <p>Ask Me Anything ....</p>
           </div>
-        )}
+        ) : null}
         {conversation.map((obj, index) =>
           obj.type === "query" ? (
-            <div key={index} className="flex items-start my-5">
-              <BsPersonCircle className="mr-2 text-2xl" />
+            <div key={index} className="conversation-query query-container">
+              <BsPersonCircle />
               <p>{obj.text}</p>
             </div>
           ) : (
-            <div key={index} className="flex items-start my-5">
-              <img src={ChatGPTsvg} alt="" className="w-6 h-6 mr-2" />
+            <div key={index} className="conversation-reponse query-container">
+              <img src={ChatGPTsvg} alt="" />
               <p>{obj.text}</p>
             </div>
           )
         )}
-        {loading && (
-          <div className="flex items-start my-5">
-            <img src={ChatGPTsvg} alt="" className="w-6 h-6 mr-2" />
+        {loading ? (
+          <div className="conversation-reponse query-container">
+            <img src={ChatGPTsvg} alt="" />
             <p>.........</p>
           </div>
-        )}
+        ) : null}
       </div>
-      <form
-        className="flex items-center w-full max-w-2xl mx-auto bg-gray-700 rounded-lg pr-4 mb-8"
-        onSubmit={handleQuerySubmit}
-      >
+      <form className="app-input-container" onSubmit={handleQuerySubmit}>
         <input
           type="text"
           required
           value={prompt}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setPrompt(e.target.value)}
-          className="bg-transparent text-lg p-3 text-white flex-1 border-none outline-none"
         />
-        <button
-          type="submit"
-          disabled={!prompt || loading}
-          className="text-white flex items-center justify-center outline-none border-none"
-        >
-          <RiSendPlaneFill className="text-2xl cursor-pointer p-1 rounded hover:bg-gray-600" />
+        <button type="submit" disabled={!prompt || loading}>
+          <RiSendPlaneFill />
         </button>
       </form>
     </div>
