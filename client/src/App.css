@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  @apply max-w-screen-xl mx-auto p-8 text-center;
+}
+
+.logo {
+  @apply h-24 p-6 transition-filter duration-300;
+}
+.logo:hover {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+.logo.react:hover {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  @apply p-8;
+}
+
+.read-the-docs {
+  @apply text-gray-500;
+}
+
+body {
+  @apply font-sans bg-gray-800 text-white max-h-screen;
+}
+* {
+  @apply m-0 p-0 box-border;
+}
+code {
+  @apply font-mono;
+}
+
+.app-container {
+  @apply flex flex-col min-h-screen px-4;
+}
+.app-container h1 {
+  @apply text-center font-medium my-3;
+}
+.conversation-container {
+  @apply flex-1 max-h-[80vh] overflow-y-auto;
+}
+/* Select the scrollbar */
+.conversation-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Select the thumb */
+.conversation-container::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 rounded;
+}
+
+/* Select the track */
+.conversation-container::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.app-input-container {
+  @apply flex items-center mx-auto w-[700px] justify-center bg-gray-700 rounded-lg pr-4 mb-8;
+}
+.app-input-container input {
+  @apply bg-transparent text-lg p-3 text-white flex-1 border-none outline-none;
+}
+.app-input-container svg {
+  @apply text-2xl cursor-pointer p-1 rounded hover:bg-gray-600;
+}
+.query-container {
+  @apply flex items-start my-5;
+}
+.query-container svg {
+  @apply mr-2 text-xl;
+}
+.conversation-reponse img {
+  @apply max-w-[25px] mr-2;
+}
+.app-input-container button {
+  @apply bg-transparent flex items-center justify-center outline-none border-none text-white;
+}
+@media (max-width: 900px) {
+  .app-input-container {
+    @apply w-[90%] my-4;
+  }
+  .conversation-container {
+    @apply w-[90%];
+  }
+  .conversation-container p {
+    @apply w-[90%];
+  }
+}
